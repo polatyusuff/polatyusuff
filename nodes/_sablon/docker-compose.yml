@@ -1,0 +1,16 @@
+# Yeni bir node için şablon. Kullanım:
+#   cp -r nodes/_sablon nodes/<proje-adi>
+#   cd nodes/<proje-adi> && cp .env.example .env   # sonra .env'i doldur
+#   docker compose up -d
+# İmaj, portlar ve komut projenin RESMİ dokümanından alınmalı.
+services:
+  node:
+    image: ${IMAGE}
+    container_name: ${NODE_NAME}
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - ./data:/data
+    ports:
+      - "${P2P_PORT}:${P2P_PORT}"
+    # command: [...]
